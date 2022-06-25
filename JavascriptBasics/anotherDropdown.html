@@ -1,0 +1,42 @@
+<html>
+   <head>
+      <script type="text/javascript" src="./script.js"></script>
+      <link type="text/css" rel="stylesheet" href="./style.css">
+   </head>
+   <body>
+      <div class="container">
+         <input name="select_value" type="hidden" id="selectedValue">
+         <div class="display-value" id="displayValue" onclick="toggleOptions(event)">
+            <span class="value-text" id="valueText">Select</span>
+            <span class="arrow arrow-down" id="arrowControl"></span>
+         </div>
+         <ul tabindex="0" class="select-container" id="selectContainer" onblur="toggleOptions(event)">
+            <li class="select-option" onclick="selected('Opt1')">Opt1</li>
+            <li class="select-option" onclick="selected('Opt2')">Opt2</li>
+            <li class="select-option" onclick="selected('Opt3')">Opt3</li>
+         </ul>
+      </div>
+      <script>
+        var isOpen = false;
+
+        function toggleOptions(e) {
+
+        isOpen = !isOpen;
+        if (isOpen) {
+            document.getElementById('selectContainer').style.visibility = 'visible';
+            document.getElementById('selectContainer').focus();
+        } else {
+            document.getElementById('selectContainer').blur();
+            document.getElementById('selectContainer').style.visibility = 'hidden';
+        }
+
+        }
+
+        function selected(val) {
+        document.getElementById('valueText').innerHTML = val;
+        document.getElementById('selectedValue').val = val;
+        toggleOptions();
+        }
+      </script>
+   </body>
+</html>

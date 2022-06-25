@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #outer1, #outer2{
+            width: 200px;
+            height: 200px;
+            border: 2px solid blue;
+        }
+        #inner1, #inner2{
+            width: 150px;
+            height: 150px;
+            border: 2px solid green;
+            position: relative;
+            left: 22px;
+            top: 22px;
+        }
+        #inner12, #inner22{
+            width: 80px;
+            height: 80px;
+            border: 2px solid red;
+            position: relative;
+            left: 30px;
+            top: 30px;
+        }
+        #outer1{
+            background-color: blue;
+        }
+        #inner1{
+            background-color: green; 
+        }
+        #inner12{
+            background-color: red;
+        }
+        #outer2{
+            margin-top: 40px;
+            margin-left: 100px;
+            border-color: blueviolet;
+            background-color: blueviolet;
+        }
+        #inner2{
+            border-color: brown;
+            background-color: brown;
+        }
+        #inner22{
+            border-color: yellow;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="outer1" onclick="displayThree(event)">
+        <div id="inner1" onclick="displayTwo(event)">
+            <div id="inner12" onclick="displayOne(event)">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="outer2" onclick="displayOne(event)">
+        <div id="inner2" onclick="displayTwo(event)">
+            <div id="inner22" onclick="displayThree(event)">
+
+            </div>
+        </div>
+    </div>
+    <script>
+        var o1 = document.getElementById("outer1");
+        var i11 = document.getElementById("inner1");
+        var i12 = document.getElementById("inner12");
+
+        var o2 = document.getElementById("outer2");
+        var i21 = document.getElementById("inner2");
+        var i22 = document.getElementById("inner22");
+
+        function displayThree(event){
+            if(event.target.id === o1.id)
+                alert(o1.id+"\n"+i11.id+"\n"+i12.id);
+            else if(event.target.id === i22.id)
+                alert(o2.id+"\n"+i21.id+"\n"+i22.id);
+        }
+
+        function displayTwo(event){
+            if(event.target.id === i11.id)
+                alert(i11.id+"\n"+i12.id);
+            else if(event.target.id === i21.id)
+                alert(o2.id+"\n"+i21.id);
+        }
+
+        function displayOne(event){
+            if(event.target.id === i12.id)
+                alert(i12.id);
+            else if(event.target.id === o2.id)
+                alert(o2.id);
+        }
+    </script>
+</body>
+</html>

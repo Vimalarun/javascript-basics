@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main-container{
+            display: flex;
+            flex-direction: row;
+            background-color: red;
+            margin-top: 150px;
+            width: 800px;
+            height: 450px;
+            margin-left: 400px;
+        }
+        .container-1{
+            width: 300px;
+            background-color: aqua;
+            height: 400px;
+            margin-left: 40px;
+            margin-top: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+        .container-2{
+            background-color: yellow;
+            width: 300px;
+            height: 400px;
+            position: relative;
+            top: 25px;
+            left: 120px;
+        }
+        .container-1 div{
+            display: flex;
+            justify-content: space-evenly;
+            padding: 20px;
+            width: 200px;
+            height: 40px;
+            left: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="container-1" id="item-container">
+            <div class="item">item1</div>
+            <div class="item">item2</div>
+            <!-- <div class="item">item3</div> -->
+            <!-- <div class="item">item4</div> -->
+            <!-- <div class="item">item5</div>/\ -->
+        </div>
+        <div class="container-2" id="drop-container">
+
+        </div>
+    </div>
+    <script>
+        var items = document.getElementsByClassName("item");
+        var dragContainer = document.getElementById("item-container");
+        var dropContainer = document.getElementById("drop-container");
+
+        //mouse cursor position
+        let offset = {x:0,y:0};
+        //boolean
+        let isMouseDown = false;
+    
+        function onMouseDown(e,item){
+            isMouseDown = true;
+            offset = {
+                x: item.offsetLeft - e.clientX,
+                y: item.offsetTop - e.clientY
+            }
+            item.style.backgroundColor = "#ddd";
+        }
+
+        function onMouseUp(e,item){
+            isMouseDown = false;
+            item.style.backgroundColor  = "aliceblue";
+        }
+
+        function onMouseMove(e,item){
+            // e.preventDefault();
+            if(isMouseDown){
+                item.style.position = "absolute";
+                item.style.left  = e.clientX+offset.x+"px";
+                item.style.top = e.clientY+offset.y+"px";
+            }
+        }
+
+        for(let i=0;i<items.length;i++){
+            let item = items[i];
+            
+            item.addEventListener("mousedown",(e) => {
+                onMouseDown(e,item);
+            });
+
+            document.body.addEventListener("mousemove",(e) => {
+                onMouseMove(e,item);
+            })
+
+            document.addEventListener("mouseup", (e) => {
+                onMouseUp(e,item);
+            })
+        }
+    </script>
+</body>
+</html>

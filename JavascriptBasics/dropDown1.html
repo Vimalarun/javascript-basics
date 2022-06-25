@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dropdown</title>
+    <style>
+        #dropdown{
+            border: 1px solid;
+            width: 150px;
+        }
+        #content{
+            float: left;
+            /* border: 1px solid; */
+            width: 90px;
+            height: 20px;
+            padding: 10px;
+            font-size: 17px;
+        }
+        #arrow{
+            display: inline-block;
+            /* border: 1px solid; */
+            width: 30px;
+            height: 40px;
+            /* float: left; */
+        }
+        #arrow p{
+            font-size: 20px;
+            position: relative;
+            bottom: 10px;
+            left: 5px;
+        }
+        #container{
+            width: 152px;
+            height: 100px;
+            border: 1px solid;
+            /* margin-top: 15px; */
+            visibility: hidden;
+        }
+        #option{
+            display: block;
+            color: black;
+            padding-top: 5px;
+            padding-left: 5px;
+        }
+        #container div:hover{
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div id="dropdown" onclick="toggle()">
+        <div id="content">select option</div>
+        <div id="arrow"><p>&#9660;</p></div>
+    </div>
+    <div id="container">
+        <div id="option" onclick="change(this)">option1</div>
+        <div id="option" onclick="change(this)">option2</div>
+        <div id="option" onclick="change(this)">option3</div>
+        <div id="option" onclick="change(this)">option4</div>
+    </div>
+    <script>
+        var flag = false;
+        function toggle(){
+            flag = !flag;
+            if(flag){
+                document.getElementById("container").style.visibility = 'visible';
+            }
+            else{
+                document.getElementById("container").style.visibility = 'hidden';
+            }
+        }
+        function change(e){
+            document.getElementById("content").innerHTML = e.innerText;
+            toggle();
+        }
+    </script>
+</body>
+</html>
